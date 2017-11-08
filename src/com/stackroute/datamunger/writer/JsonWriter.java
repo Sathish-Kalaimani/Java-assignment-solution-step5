@@ -19,9 +19,22 @@ public class JsonWriter {
 		 * Gson is a third party library to convert Java object to JSON. We will use
 		 * Gson to convert resultSet object to JSON
 		 */
+		
+		
+		
 		Gson gson = new GsonBuilder().setPrettyPrinting().create();
 		String result = gson.toJson(resultSet);
-
+		boolean flag = false;
+		try{	
+			
+		FileWriter writer = new FileWriter("data/result.json");
+		
+		writer.write(result);
+		flag = true;
+		writer.close();
+		}catch(IOException e){
+			e.printStackTrace();
+		
 		/*
 		 * write JSON string to data/result.json file. As we are performing File IO,
 		 * consider handling exception
@@ -33,7 +46,8 @@ public class JsonWriter {
 
 		/* close BufferedWriter object */
 
-		return false;
+		
 	}
-
+		return flag;
+}
 }
